@@ -1,0 +1,81 @@
+Nicholas Ulricksen
+November 7, 2017
+
+Tutorial Link:
+https://scotch.io/tutorials/building-a-tic-tac-toe-game-with-vue-2-part-1
+
+Simple Tic Tac Toe app built using Vue.js
+
+
+-vue-loader is a loader for Webpack that allows you to write the template and CSS 
+    for a component all in one file. The file needs to have .vue extension.
+
+Each .vue file has 3 sections:
+    <template></template>
+    <script></script>
+    <style></style>
+
+Game Elements:
+    2 players (X and O)
+    The game board grid itself
+        3 rows
+        3 columns
+        9 grid cells
+    Scoreboard (# of wins for each player)
+        Number of match being played
+        Whose turn it is
+        Restart Game button
+
+Component Structure:
+    App - constains title and <Board>
+        Board - constains 3x3 grid with <Cell> in each one
+            Cell x9 - can contain X or O depending on who clicked it
+
+Game Flow:
+    App is loaded
+    All cells are empty
+    O is the first player
+    The player can place an O in any of the cells
+    The player-turn is changed to X
+    Each time a player places a merk, the turn is handed to the non-active player
+    After each strike, we need to check if the game meets any winning condition
+    We also need to check if the game is a draw
+    After or anytime in between a game, a button called Restart can be clicked to restart the game
+    The status of the game (in progress/won/draw)
+    Status displays turn of respective player
+    The game displays the number of matches and number of wins for each player
+
+
+Dividing Up Data:
+    App component
+        Number of matches 
+        Number of wins for each player
+    Grid component
+        Data for the active player (X or O)
+        Game status
+        Status message
+        Status color (displayed on top bar)
+        Number of moves played by both players (determine draw)
+        Mark placement for each cell 
+        All 8 winning conditions
+            Winning conditions array contains 8 arrays, each containing possible winning
+            condtions
+    Cell component
+        The mark that the player placed in the cell
+        Frozen property to ensure the cell is not played more than once
+
+Event bus:
+    In main.js
+    window.Event = new Vue()
+
+    strike()
+        get the active player from parent component
+            use to change the mark property
+        set the frozen property to true
+        notify the Board component about the change in event bus
+            Cell will $emit('functionName', data)
+            Board will $on('functionName', function())
+
+
+November 16, 2017
+IT WORKS
