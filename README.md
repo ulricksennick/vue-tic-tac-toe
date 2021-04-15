@@ -2,9 +2,11 @@
 
 > Tic Tac Toe game built with Vue.js
 
+![demo](media/tictactoe.gif)
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
